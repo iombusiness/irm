@@ -4,14 +4,19 @@ const AboutSection = () => {
   return (
     <section id="about" className="py-20 px-6" style={{ background: "var(--section-gradient)" }}>
       <div className="max-w-4xl mx-auto space-y-16">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-2">The iRM Odoo Module</h2>
-          <div className="w-16 h-1 bg-primary mx-auto rounded-full" />
+        <div className="rounded-3xl border border-border/60 bg-card/80 px-6 py-12 text-center shadow-sm backdrop-blur-sm md:px-10 md:py-16">
+          <p className="text-[5.5rem] font-bold uppercase leading-none tracking-tight text-foreground md:text-[9.5rem]">
+            iRM
+          </p>
+          <h2 className="mt-4 text-3xl font-bold text-foreground">
+            Inventory Risk Mitigation
+          </h2>
+          <div className="mt-4 h-1 w-16 rounded-full bg-primary mx-auto" />
         </div>
 
         <div className="space-y-6 text-muted-foreground leading-relaxed">
           <p>
-            iRM (Inventory Risk Mitigation) is a powerful Odoo module designed to help businesses reduce inventory risk and improve cashflow. By providing advanced inventory analytics, forecasting tools, and automated risk assessments, iRM empowers your organization to make data-driven decisions and optimize stock levels across your supply chain.
+            A powerful Odoo module designed to help businesses reduce inventory risk and improve cashflow. By providing advanced inventory analytics, forecasting tools, and automated risk assessments, iRM empowers your organization to make data-driven decisions and optimize stock levels across your supply chain.
           </p>
         </div>
 
