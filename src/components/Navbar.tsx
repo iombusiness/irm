@@ -19,7 +19,10 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <span className="text-lg font-bold text-primary">iRM</span>
+        <span className="flex items-center gap-3 text-lg font-bold text-primary">
+          <img src={`${import.meta.env.BASE_URL}irm-logo.svg`} alt="iRM logo" className="h-8 w-8 rounded-lg" />
+          iRM
+        </span>
         <div className="hidden md:flex gap-6">
           {links.map((l) => (
             <button key={l.href} onClick={() => handleClick(l.href)} className="text-sm text-muted-foreground hover:text-primary transition-colors">

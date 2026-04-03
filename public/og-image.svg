@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title>iRM</title>
+  <desc>Inventory Risk Mitigation built by IOMBusiness</desc>
+  <rect width="1200" height="630" fill="#f4f1fb" />
+  <rect x="60" y="60" width="300" height="300" rx="42" fill="#6d5f99" />
+  <circle cx="101" cy="166" r="16" fill="#fff" />
+  <rect x="88" y="194" width="26" height="94" fill="#fff" />
+  <path fill="#fff" d="M147 162h41c18 0 31 4 38 11 8 7 12 19 12 35 0 8-2 14-5 21-3 6-8 11-14 14 4 2 7 4 9 6 2 2 4 5 6 10 2 5 5 16 9 34l6 20h-23l-5-19c-4-16-7-27-9-31-2-4-4-6-7-8-3-1-8-2-14-2h-17v60h-21V162zm21 18v33h21c10 0 18-2 22-5 5-3 7-9 7-17 0-7-2-12-6-15-4-3-11-4-21-4h-23z" />
+  <path fill="#fff" d="M257 162h26l26 88 25-88h25v151h-19v-99l-23 99h-18l-24-99v99h-18V162z" />
+  <text x="420" y="255" fill="#221a3d" font-size="88" font-family="Arial, Helvetica, sans-serif" font-weight="700">iRM</text>
+  <text x="420" y="328" fill="#4e4573" font-size="34" font-family="Arial, Helvetica, sans-serif">Inventory Risk Mitigation</text>
+  <text x="420" y="390" fill="#5d557f" font-size="26" font-family="Arial, Helvetica, sans-serif">Built by IOMBusiness</text>
+</svg>
