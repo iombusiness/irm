@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title">
-  <title>iRM touch icon</title>
-  <rect width="1024" height="1024" rx="96" fill="#6d5f99" />
-  <circle cx="140" cy="374" r="38" fill="#fff" />
-  <rect x="110" y="441" width="62" height="252" fill="#fff" />
-  <path fill="#fff" d="M251 360h136c60 0 103 11 129 34 25 23 38 58 38 104 0 25-5 48-16 67-11 19-27 34-48 45 12 5 22 11 30 18 7 6 14 16 20 30 6 14 16 44 30 91l18 56h-78l-17-54c-14-45-23-72-29-83-6-11-14-18-23-22-10-4-25-6-45-6h-56v165h-70V360zm70 52v91h68c34 0 58-4 73-13 15-8 23-24 23-48 0-20-7-34-20-42-13-8-36-12-69-12h-75z" />
-  <path fill="#fff" d="M563 360h87l88 246 84-246h85v333h-63V472l-76 221h-63l-79-221v221h-63V360z" />
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="iRM apple touch icon">
+  <rect width="180" height="180" fill="#6f639a"/>
+  <text x="90" y="115"
+        text-anchor="middle"
+        font-family="Roboto, Arial, Helvetica, sans-serif"
+        font-size="100"
+        font-weight="700"
+        fill="#ffffff">iRM</text>
 </svg>
