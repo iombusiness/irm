@@ -4,11 +4,14 @@ const AboutSection = () => {
   return (
     <section id="about" className="py-20 px-6" style={{ background: "var(--section-gradient)" }}>
       <div className="max-w-4xl mx-auto space-y-16">
-        <div className="rounded-3xl border border-border/60 bg-card/80 px-6 py-12 text-center shadow-sm backdrop-blur-sm md:px-10 md:py-16">
-          <p className="text-[5.5rem] font-bold uppercase leading-none tracking-tight text-foreground md:text-[9.5rem]">
+        <div
+          className="rounded-3xl border border-border/60 px-6 py-12 text-center shadow-sm backdrop-blur-sm md:px-10 md:py-16"
+          style={{ backgroundColor: "#6f609a" }}
+        >
+          <p className="text-[5.5rem] font-bold leading-none tracking-tight text-white md:text-[9.5rem]">
             iRM
           </p>
-          <h2 className="mt-4 text-3xl font-bold text-foreground">
+          <h2 className="mt-4 text-3xl font-bold text-white">
             Inventory Risk Mitigation
           </h2>
           <div className="mt-4 h-1 w-16 rounded-full bg-primary mx-auto" />
