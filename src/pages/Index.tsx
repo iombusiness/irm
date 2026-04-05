@@ -1,5 +1,4 @@
 import AboutSection from "@/components/AboutSection";
-import VideoSection from "@/components/VideoSection";
 import GuidesSection from "@/components/GuidesSection";
 import ScreenshotsSection from "@/components/ScreenshotsSection";
 import DisclaimerSection from "@/components/DisclaimerSection";
@@ -14,7 +13,6 @@ const Index = () => {
       <Navbar />
       <main>
         <AboutSection />
-        <VideoSection />
         <GuidesSection />
         <ScreenshotsSection />
         <DisclaimerSection />

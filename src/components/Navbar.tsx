@@ -1,6 +1,5 @@
 const links = [
   { label: "About", href: "#about" },
-  { label: "Videos", href: "#videos" },
   { label: "How to Guides", href: "#guides" },
   { label: "Screenshots", href: "#screenshots" },
   { label: "Disclaimer", href: "#disclaimer" },
