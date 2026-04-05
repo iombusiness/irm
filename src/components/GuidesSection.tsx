@@ -199,9 +199,7 @@ const GuidesSection = () => {
                   {guide.order}
                 </div>
                 <div className="space-y-1">
-                  <span className="block text-sm font-medium text-foreground">
-                    Step {guide.order}: {guide.title}
-                  </span>
+                  <span className="block text-sm font-medium text-foreground">{guide.title}</span>
                   <span className="block text-xs text-muted-foreground">
                     Open guide and download PDF
                   </span>
