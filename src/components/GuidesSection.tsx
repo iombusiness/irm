@@ -15,7 +15,7 @@ const guides: Guide[] = [
   {
     slug: "about_module_e",
     order: 1,
-    title: "About",
+    title: "About Module",
     html: "about_module_e/email.html",
     text: "about_module_e/email.txt",
     pdf: "about_module_e.pdf",
@@ -23,7 +23,7 @@ const guides: Guide[] = [
   {
     slug: "installing_module_e",
     order: 2,
-    title: "Installing",
+    title: "Installing Module",
     html: "installing_module_e/email.html",
     text: "installing_module_e/email.txt",
     pdf: "installing_module_e.pdf",
@@ -146,9 +146,21 @@ const GuidesSection = () => {
           </p>
         </div>
 
-        <div className="rounded-xl border bg-background/80 p-4 text-sm text-muted-foreground">
-          Follow this suggested order: 1. About 2. Installing 3. Module Settings 4. Strategic Stock
-          Management 5. Proposal Report
+        <div className="rounded-xl border bg-background/80 p-5">
+          <p className="text-sm font-medium text-foreground">Suggested learning path</p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {guides.map((guide) => (
+              <div
+                key={`path-${guide.slug}`}
+                className="rounded-lg border bg-background px-4 py-3 text-left"
+              >
+                <div className="text-xs font-semibold uppercase tracking-wide text-primary">
+                  Step {guide.order}
+                </div>
+                <div className="mt-1 text-sm font-medium text-foreground">{guide.title}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="relative max-w-md mx-auto">
