@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 
 type Guide = {
   slug: string;
+  order: number;
   title: string;
   html: string;
   text: string;
@@ -13,38 +14,43 @@ type Guide = {
 const guides: Guide[] = [
   {
     slug: "about_module_e",
-    title: "About Module",
+    order: 1,
+    title: "About",
     html: "about_module_e/email.html",
     text: "about_module_e/email.txt",
     pdf: "about_module_e.pdf",
   },
   {
     slug: "installing_module_e",
-    title: "Installing Module",
+    order: 2,
+    title: "Installing",
     html: "installing_module_e/email.html",
     text: "installing_module_e/email.txt",
     pdf: "installing_module_e.pdf",
   },
   {
     slug: "module_settings_e",
+    order: 3,
     title: "Module Settings",
     html: "module_settings_e/email.html",
     text: "module_settings_e/email.txt",
     pdf: "module_settings_e.pdf",
   },
   {
-    slug: "proposal_report_e",
-    title: "Proposal Report",
-    html: "proposal_report_e/email.html",
-    text: "proposal_report_e/email.txt",
-    pdf: "proposal_report_e.pdf",
-  },
-  {
     slug: "strategic_Stock_management_e",
+    order: 4,
     title: "Strategic Stock Management",
     html: "strategic_Stock_management_e/email.html",
     text: "strategic_Stock_management_e/email.txt",
     pdf: "strategic_Stock_management_e.pdf",
+  },
+  {
+    slug: "proposal_report_e",
+    order: 5,
+    title: "Proposal Report",
+    html: "proposal_report_e/email.html",
+    text: "proposal_report_e/email.txt",
+    pdf: "proposal_report_e.pdf",
   },
 ];
 
@@ -136,8 +142,13 @@ const GuidesSection = () => {
           <h2 className="text-3xl font-bold text-foreground mb-2">How to Guides</h2>
           <div className="w-16 h-1 bg-primary mx-auto rounded-full" />
           <p className="text-muted-foreground mt-4">
-            Browse our HTML guides and download the matching PDFs when needed.
+            Browse our how to guides to make the best use of the iRM module
           </p>
+        </div>
+
+        <div className="rounded-xl border bg-background/80 p-4 text-sm text-muted-foreground">
+          Follow this suggested order: 1. About 2. Installing 3. Module Settings 4. Strategic Stock
+          Management 5. Proposal Report
         </div>
 
         <div className="relative max-w-md mx-auto">
@@ -170,12 +181,18 @@ const GuidesSection = () => {
               <button
                 key={guide.slug}
                 onClick={() => setActiveGuide(guide.slug)}
-                className="flex items-center gap-3 p-4 rounded-lg border bg-background hover:border-primary/50 transition-colors text-left"
+                className="flex items-start gap-4 p-4 rounded-lg border bg-background hover:border-primary/50 transition-colors text-left"
               >
-                <FileText className="h-8 w-8 text-primary shrink-0" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+                  {guide.order}
+                </div>
                 <div className="space-y-1">
-                  <span className="block text-sm font-medium text-foreground">{guide.title}</span>
-                  <span className="block text-xs text-muted-foreground">Open guide and download PDF</span>
+                  <span className="block text-sm font-medium text-foreground">
+                    Step {guide.order}: {guide.title}
+                  </span>
+                  <span className="block text-xs text-muted-foreground">
+                    Open guide and download PDF
+                  </span>
                 </div>
               </button>
             ))}

@@ -1,7 +1,7 @@
 const links = [
   { label: "About", href: "#about" },
   { label: "Videos", href: "#videos" },
-  { label: "Guides", href: "#guides" },
+  { label: "How to Guides", href: "#guides" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b">
-      <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-3 px-6 py-4">
+      <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 py-4">
         {links.map((l) => (
           <button
             key={l.href}
