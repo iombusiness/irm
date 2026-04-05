@@ -1,0 +1,187 @@
+After installing iRM module, the next step is to configure the settings that control how the module evaluates products, classifies inventory, and calculates replenishment recommendations.
+All configuration is managed from the module’s settings screen.
+How to access settings
+Open Inventory Risk Mitigation.
+Click Settings.
+
+Review each section in module settings carefully before using the Proposal Report for decision-making to make the most of it and avoid inaccuracies.
+The settings in this screen determine how iRM calculates:
+inventory classifications
+preferred service levels
+reorder frequency
+reorder point recommendations
+reorder quantity recommendations
+1. Stock Replenishment Strategy
+ This setting defines the replenishment logic used by the module.
+Available Options
+Periodic Consolidated Stock Replenishment
+Order as required
+Periodic Consolidated Stock Replenishment is designed for businesses that prefer planned replenishment cycles. In this mode, the module considers forecast holding, replenishment frequency, lead time demand, and safety stock when calculating the recommended maximum stock level and reorder quantity.
+Order as required is designed for businesses that replenish only when needed. In this mode, the module uses the current maximum quantity as the order-up-to level and calculates the reorder quantity based on the gap between current stock on hand and the current maximum.
+
+Recommendation
+Use Periodic Consolidated Stock Replenishment if your business uses planned procurement cycles or wants the module to drive structured replenishment recommendations.
+Use Order as required if your business typically replenishes reactively and does not operate on fixed replenishment intervals.
+2. Consumption Period
+Setting
+Relative consumption data in months
+Allowed Range is between 6 to 12 months
+This value determines how many months of recent demand history are used when calculating variability and smoothing-based measures that support safety stock and replenishment decisions.
+A shorter period makes the model more sensitive to recent demand changes.
+A longer period gives a broader historical view and may reduce the impact of short-term fluctuations.
+
+Recommendation
+use 6 to 8 months if demand patterns change quickly
+use 9 to 12 months if demand is relatively stable and you want a broader trend view
+For most businesses, 12 months is a practical starting point.
+3. Defined Consumption Value for Inventory Classification
+
+iRM Module is currency agnostic iRM can be used in any Odoo company currency.
+Monetary calculations and displayed values follow the currency configured for the company in Odoo.
+Please note that some field labels currently use the $ symbol as a generic label, but the module is not restricted to USD.
+The module uses the product’s standard cost to determine whether an item belongs in:
+A: high-value item
+B: medium-value item
+C: lower-value item
+Editable Values
+You can directly maintain:
+B Higher bandwidth Value ($)
+C Higher bandwidth Value ($)
+The related lower and upper ranges for the bands are calculated automatically and displayed on screen.
+How Classification Works
+In practice:
+products with the highest unit cost fall into A
+products in the middle range fall into B
+products in the lowest range fall into C
+
+Recommendation
+Set these thresholds based on your business’s purchasing profile.
+For example:
+if your business carries many expensive products, you may raise the A/B boundary
+if your product range is mostly lower value, you may lower the thresholds so the categories better reflect commercial importance
+
+Important Note These values should reflect your business’s own cost structure, not a generic industry benchmark.
+4. Defined Consumption Quantity for Inventory Classification
+
+The module uses the product’s average monthly smoothed consumption to determine whether an item belongs in:
+X: high-demand item
+Y: medium-demand item
+Z: low-demand item
+Editable Values
+You can directly maintain:
+Y Higher bandwidth Qty
+Z Higher bandwidth Qty
+The related lower and upper boundaries are calculated automatically.
+How Classification Works
+In practice:
+the highest-demand products fall into X
+medium-demand products fall into Y
+lower-demand products fall into Z
+If a product is treated as non-stock by the module, it is assigned ZZ.
+
+Recommendation
+Set quantity thresholds that match the normal sales or usage pattern of your business.
+If your business deals in very low-volume items, lower thresholds may be more appropriate.
+If your business handles high-volume items, you may need significantly higher thresholds so the classification remains meaningful.
+5. Service Level Based on Average Monthly Sales / Consumption and Unit Price
+
+
+This section is one of the most important configuration areas in the module.
+Setting unrealistic preferred DIFOT (Delivery in Full on Time) directly affects the recommendations on reordering rules.
+It defines the preferred service level for each combined inventory class:
+AX, AY, AZ
+BX, BY, BZ
+CX, CY, CZ
+What This Means
+Each code combines:
+product value classification: A, B, or C
+demand classification: X, Y, or Z
+Example:
+AX = high value, high demand
+CZ = low value, low demand
+For each combination, you select the preferred service level percentage.
+Why It Matters
+The selected service level drives the Z-value used in the safety stock formula.
+This means the service level settings directly influence:
+safety stock
+reorder point
+recommended stock holding levels
+Typical Configuration Logic
+A business may choose:
+higher service levels for critical, fast-moving, or high-risk items
+lower service levels for slower-moving or less critical items
+Example policy direction:
+AX, BX, CX: usually higher service levels
+AZ, BZ, CZ: usually lower service levels
+
+Recommendation
+Set service levels in line with your operational goals:
+if service availability is critical, use higher percentages
+if reducing stock investment is more important, use more conservative values
+
+Not sure where to start? Reset to Defaults to restore the default frequency values.
+6. Stock Replenishment Frequency (in Weeks)
+This section defines how often products should be replenished based on:
+inventory classification
+lead-time grouping
+freight method grouping
+How This Section Works
+Each classification row represents an inventory risk category:
+AX, AY, AZ
+BX, BY, BZ
+CX, CY, CZ
+ZZ
+Each row contains three replenishment frequency values:
+Delivery Lead time 1–2 weeks
+Delivery Lead time 3–6 weeks
+Delivery Lead time 7+ weeks
+These represent replenishment frequency in weeks for products that fall into that classification.
+How the Module Uses It
+For each product, the module:
+calculates the product’s inventory classification
+determines the lead-time bucket
+selects the matching replenishment frequency from this matrix
+uses that frequency in the reorder calculation
+How to Configure It
+Enter the number of weeks that best reflects how often you want to replenish products in each class.
+Example approach:
+higher-priority classes such as AX may have shorter replenishment cycles
+lower-priority or slower-moving classes such as CZ may have longer replenishment cycles
+ZZ is used for non-stock items and normally remains 0
+
+Recommendation
+Start with simple business rules:
+fast-moving and important items: shorter intervals
+slower-moving and less critical items: longer intervals
+non-stock items: keep at 0
+
+Not sure where to start? Reset to Defaults to restore the default frequency values.
+7. Suggested Configuration Sequence
+For a first-time setup, it is recommended to configure the settings in the following order:
+Set the Stock Replenishment Strategy.
+Set the Consumption Period.
+Configure the Value classification thresholds.
+Configure the Quantity classification thresholds.
+Configure the Service Level matrix.
+Configure the Replenishment Frequency matrix.
+Save the settings.
+Review products in the Proposal Report.
+This sequence helps ensure the classification logic is defined before replenishment outputs are reviewed.
+
+Strategic Stock Management Strategic Stock Management is not configured through the main module settings page.
+This feature is managed individually at product level through the Strategic Stock Management tab on each product record. Use this tab when a product requires special or temporary stockholding treatment.
+Refer Strategic Stock Management guide for explanation of its usage.
+8. Best Practice Recommendations
+Start Simple
+Begin with a practical first version of the settings rather than trying to perfect every number immediately.
+Align With Business Policy
+Your thresholds and service levels should reflect:
+product importance
+cost sensitivity
+demand predictability
+desired customer service level
+purchasing and freight cycles
+After saving the settings, open the Proposal Report and review a sample of products from different categories to ensure the outputs align with business expectations.
+
+Refine Over Time
+It is normal to adjust the values after reviewing live product results.

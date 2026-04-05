@@ -1,38 +1,125 @@
-import { useState } from "react";
-import { FileText, Search, X, ChevronLeft } from "lucide-react";
+import { useEffect, useState } from "react";
+import { FileText, Search, X, ChevronLeft, Download } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-// In a real setup, these would be fetched from the GitHub repo's guides folder.
-// For now, this is a placeholder structure. Add PDF files to a /guides folder in GitHub
-// and update this list, or implement dynamic fetching.
-const sampleGuides = [
-  { title: "Getting Started", filename: "getting_started.pdf" },
-  { title: "Setting Strategic Stock", filename: "setting_strategic_stock.pdf" },
+type Guide = {
+  slug: string;
+  title: string;
+  html: string;
+  text: string;
+  pdf: string;
+};
+
+const guides: Guide[] = [
+  {
+    slug: "about_module_e",
+    title: "About Module",
+    html: "about_module_e/email.html",
+    text: "about_module_e/email.txt",
+    pdf: "about_module_e.pdf",
+  },
+  {
+    slug: "installing_module_e",
+    title: "Installing Module",
+    html: "installing_module_e/email.html",
+    text: "installing_module_e/email.txt",
+    pdf: "installing_module_e.pdf",
+  },
+  {
+    slug: "module_settings_e",
+    title: "Module Settings",
+    html: "module_settings_e/email.html",
+    text: "module_settings_e/email.txt",
+    pdf: "module_settings_e.pdf",
+  },
+  {
+    slug: "proposal_report_e",
+    title: "Proposal Report",
+    html: "proposal_report_e/email.html",
+    text: "proposal_report_e/email.txt",
+    pdf: "proposal_report_e.pdf",
+  },
+  {
+    slug: "strategic_Stock_management_e",
+    title: "Strategic Stock Management",
+    html: "strategic_Stock_management_e/email.html",
+    text: "strategic_Stock_management_e/email.txt",
+    pdf: "strategic_Stock_management_e.pdf",
+  },
 ];
 
 const GuidesSection = () => {
   const [search, setSearch] = useState("");
   const [activeGuide, setActiveGuide] = useState<string | null>(null);
+  const [guideText, setGuideText] = useState<Record<string, string>>({});
 
-  const filtered = sampleGuides.filter((g) =>
-    g.title.toLowerCase().includes(search.toLowerCase())
-  );
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadGuideText = async () => {
+      const entries = await Promise.all(
+        guides.map(async (guide) => {
+          try {
+            const response = await fetch(`${import.meta.env.BASE_URL}guides/${guide.text}`);
+            const text = response.ok ? await response.text() : "";
+
+            return [guide.slug, text] as const;
+          } catch {
+            return [guide.slug, ""] as const;
+          }
+        })
+      );
+
+      if (isMounted) {
+        setGuideText(Object.fromEntries(entries));
+      }
+    };
+
+    void loadGuideText();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const filtered = guides.filter((guide) => {
+    const query = search.toLowerCase().trim();
+    const content = guideText[guide.slug]?.toLowerCase() ?? "";
+
+    if (!query) {
+      return true;
+    }
+
+    return guide.title.toLowerCase().includes(query) || content.includes(query);
+  });
 
   if (activeGuide) {
-    const guide = sampleGuides.find((g) => g.filename === activeGuide);
+    const guide = guides.find((g) => g.slug === activeGuide);
     return (
       <section id="guides" className="py-20 px-6 bg-background">
         <div className="max-w-5xl mx-auto space-y-6">
-          <button
-            onClick={() => setActiveGuide(null)}
-            className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-          >
-            <ChevronLeft className="h-4 w-4" /> Back to Guides
-          </button>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <button
+              onClick={() => setActiveGuide(null)}
+              className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+            >
+              <ChevronLeft className="h-4 w-4" /> Back to Guides
+            </button>
+            {guide && (
+              <a
+                href={`${import.meta.env.BASE_URL}guides/${guide.pdf}`}
+                download
+                className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium text-foreground hover:border-primary/50"
+              >
+                <Download className="h-4 w-4" />
+                Download PDF
+              </a>
+            )}
+          </div>
           <h3 className="text-xl font-semibold text-foreground">{guide?.title}</h3>
           <div className="w-full bg-muted rounded-lg overflow-hidden" style={{ height: "80vh" }}>
             <iframe
-              src={`${import.meta.env.BASE_URL}guides/${activeGuide}`}
+              src={`${import.meta.env.BASE_URL}guides/${guide?.html}`}
               className="w-full h-full"
               title={guide?.title}
             />
@@ -49,7 +136,7 @@ const GuidesSection = () => {
           <h2 className="text-3xl font-bold text-foreground mb-2">How to Guides</h2>
           <div className="w-16 h-1 bg-primary mx-auto rounded-full" />
           <p className="text-muted-foreground mt-4">
-            Browse our PDF tutorials to get the most out of iRM.
+            Browse our HTML guides and download the matching PDFs when needed.
           </p>
         </div>
 
@@ -72,8 +159,8 @@ const GuidesSection = () => {
           <div className="text-center py-12">
             <FileText className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
             <p className="text-muted-foreground text-sm">
-              {sampleGuides.length === 0
-                ? "PDF guides will appear here once added to the repository."
+              {guides.length === 0
+                ? "Guides will appear here once added to the repository."
                 : "No guides match your search."}
             </p>
           </div>
@@ -81,12 +168,15 @@ const GuidesSection = () => {
           <div className="grid sm:grid-cols-2 gap-4">
             {filtered.map((guide) => (
               <button
-                key={guide.filename}
-                onClick={() => setActiveGuide(guide.filename)}
+                key={guide.slug}
+                onClick={() => setActiveGuide(guide.slug)}
                 className="flex items-center gap-3 p-4 rounded-lg border bg-background hover:border-primary/50 transition-colors text-left"
               >
                 <FileText className="h-8 w-8 text-primary shrink-0" />
-                <span className="text-sm font-medium text-foreground">{guide.title}</span>
+                <div className="space-y-1">
+                  <span className="block text-sm font-medium text-foreground">{guide.title}</span>
+                  <span className="block text-xs text-muted-foreground">Open guide and download PDF</span>
+                </div>
               </button>
             ))}
           </div>

@@ -1,0 +1,167 @@
+The Strategic Stock Management tab allows users to manage products that require special stockholding treatment outside the normal replenishment proposal workflow.
+This feature is designed for exception-based inventory decisions where a product must be handled differently due to customer requirements, business risk, lifecycle stage, operational importance, or temporary supply considerations.
+
+Proposal Workflow Restriction
+When a product has a Strategic Stock Type, proposal workflow actions in the Proposal Report are disabled for that product.
+This is intentional. Strategic stock products are treated as exceptions and are not meant to be processed through the normal accept/apply proposal workflow.
+Where to Find It
+To access this feature:
+Open the Products menu in Odoo.
+Select the required product.
+Open the Strategic Stock Management tab.
+This tab is available on the product form and is managed individually for each product.
+Purpose of Strategic Stock Management
+Strategic Stock Management is used when a product needs temporary or special stockholding rules that should not be driven only by the standard inventory proposal calculations.
+Because these scenarios are product-specific, they are maintained directly on the product record rather than in the general settings page.
+How Strategic Stock Management Works
+Standard Flow
+The typical process is:
+Open the product.
+Go to the Strategic Stock Management tab.
+Select a Strategic Stock Type.
+Enter the request details.
+Enter the relevant customer details if needed.
+Define the stock period and review dates.
+Enter the target New Min and New Max values.
+Save the product.
+Once saved, the strategic stock data is recorded against the product, and the target reorder values are synced to the product’s reordering rule.
+Automatic Behavior
+Reordering Rule Synchronization
+When New Min and New Max are entered and saved, the module updates the product’s reordering rule accordingly.
+If no reordering rule exists, the module can create one for the product in the company warehouse context.
+Proposal Workflow Restriction
+When a product has a Strategic Stock Type, proposal workflow actions in the Proposal Report are disabled for that product.
+This is intentional. Strategic stock products are treated as exceptions and are not meant to be processed through the normal accept/apply proposal workflow.
+Automatic Reversion After End Date
+The module includes a scheduled daily process that checks for expired strategic stock records.
+When the strategic stock end date has passed, the system reverts the reordering rule.
+In general:
+most strategic items revert to their stored post-end-date values
+Phased Out and Obsolete items revert to 0 / 0
+The reversion is also logged for traceability.
+Special Behavior by Stock Type
+New Product Launch
+For New Product Launch, the module automatically sets:
+Stock Start Date
+Stock End Date to six months after the start date
+This supports a predefined launch stockholding period.
+Seasonal, Promotion, Obsolete, and Phased Out
+For these stock types:
+customer details are cleared
+estimated monthly consumption is reset
+target min/max values are expected to remain 0 / 0
+For Obsolete and Phased Out, this helps reduce the risk of accidental reordering.
+Validation Rules
+The module includes several controls to protect data quality:
+Stock Start Date cannot be in the past
+New Min cannot be greater than New Max
+for Seasonal, Promotion, Obsolete, and Phased Out, target min/max must remain zero
+These validations help ensure strategic stock is managed consistently and safely.
+Strategic Stock Log
+Every important strategic stock change will be recorded in the Strategic Stock Log.
+This log provides historical visibility of:
+strategic stock type
+request information
+target min/max values
+original values
+stockholding period
+costs
+reversion activity
+This gives users an audit trail for strategic inventory decisions.
+
+Recommendation
+Use Strategic Stock Management only for exception-based stock decisions.
+Do not use it as a substitute for normal replenishment planning.
+Record a clear request reason for auditability.
+Maintain realistic end dates and review periods.
+Use customer association fields only when the stock is linked to a specific customer requirement.
+Review phased-out and obsolete items carefully to avoid unnecessary stockholding.
+Check the Strategic Stock Log regularly if multiple users maintain these records.
+The Strategic Stock Management tab gives users a controlled way to manage products that require temporary, special, or business-critical stockholding treatment.
+It helps ensure that exceptional stock decisions are:
+documented
+traceable
+linked to reorder rules
+reviewed over time
+automatically reverted when no longer required
+Strategic Stock Management Form
+1. Classification
+This section identifies the reason the product is being treated as strategic or exceptional stock.
+Fields include:
+Strategic Stock Type
+Requested By
+Request Date
+Request Reason
+Strategic Stock Type
+This is the main control field in the tab.
+Available types include:
+Strategically Important
+Customer Specific Request
+Production Material
+MRO Parts
+Seasonal
+Promotion
+Product Lifecycle Management – New Product Launch
+Product Lifecycle Management – Phased Out
+Product Lifecycle Management – Obsolete
+Other
+This field determines how the product is treated in the strategic stock process.
+Requested By
+Records the employee responsible for initiating the strategic stock request.
+Request Date
+Stores the date the request was created.
+Request Reason
+Allows users to document the reason for holding or managing this product as strategic stock.
+2. Customer Association
+This section is used when the stockholding requirement is linked to a customer.
+Fields include:
+Customer Account
+Customer Contact
+Use this area for customer-specific stock requests or where stock is being held in support of a known account or contact.
+3. Consumption Estimate
+This section includes:
+Estimated Monthly Consumption
+This value allows the user to enter an expected monthly usage figure for the product in the context of the strategic stock decision.
+4. Stock Holding Period
+This section controls the time period for which the strategic stock arrangement should remain active.
+Fields include:
+Stock Start Date
+Stock End Date
+Review Every (Months)
+Last Review
+Next Review
+Stock Start Date
+The date from which the strategic stock period begins.
+Stock End Date
+The planned end date for the strategic stock arrangement.
+Review Every (Months)
+Defines how often the stock strategy should be reviewed.
+Last Review
+Records the last review date.
+Next Review
+This field is calculated automatically based on the review interval and last review date.
+5. Reordering Overview
+This section gives visibility into the product’s current reorder values and stock position.
+Fields include:
+Current Min
+Current Max
+Stock On Hand
+related cost values for each
+This helps users compare the current reorder rule against the proposed strategic stock targets.
+A Reordering Rules button is also available to open the linked Odoo reordering rule directly.
+6. Target Min/Max Quantities
+This section contains the key fields used to define the temporary strategic stock target.
+Fields include:
+New Min
+New Max
+These values represent the target stock levels to be used during the strategic stock period.
+When maintained, the module synchronizes these values with the product’s reordering rule.
+7. Post End Date Quantities
+This section displays the quantities that will apply after the strategic stock period ends. The values are read-only and cannot be overridden by the user.
+Fields include:
+Post End Date Min
+Post End Date Max
+Last Reverted Date
+These values allow the system to restore or reset reorder values when the strategic stock period expires and displayed help user review re-ordering rules.
+
+Post End Date Quantities Phased Out and Obsolete items always revert to 0 / 0, even if a product previous had non-zero re ordering rule.

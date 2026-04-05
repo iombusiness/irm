@@ -1,0 +1,34 @@
+Installing the iRM module is simple and follows the standard Odoo app installation process.
+Before You Begin
+Please ensure
+your Odoo database is running on a supported version - we have tested on Odoo versions 18 and 19
+the required dependent apps are installed - base, product, stock, sale, hr, contacts and purchase
+you have administrator access to Apps and Settings
+the module has been added to your Odoo instance by your hosting provider, technical team, or deployment partner
+Install the Module
+Log in to your Odoo database as an administrator.
+Open the Apps menu.
+Search for Inventory Risk Mitigation or iRM.
+Click Install.
+
+Once installation is complete, the module is activated automatically.
+After Installation
+After the module is installed, you will see a new main menu called Inventory Risk Mitigation.
+The module also adds:
+the Proposal Report
+the Strategic Stock workspace
+the Proposal Acceptance Log
+the Strategic Stock Log
+the module Settings page
+the Strategic Stock Management tab on the product form
+In addition, the module automatically creates a scheduled action that checks daily for expired strategic stock records and reverts them when required.
+
+Troubleshooting
+If the module does not appear in your Apps menu, this usually means:
+the app has not yet been uploaded to your Odoo server
+server restart may be needed
+the Apps list has not been refreshed
+from developer mode, try updating apps list
+your user account does not have sufficient access rights
+ensure you have admin previleges
+It will be best to have your Odoo administrator or implementation partner activate the module.
