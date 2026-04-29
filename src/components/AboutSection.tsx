@@ -19,8 +19,22 @@ const AboutSection = () => {
 
         <div className="space-y-6 text-muted-foreground leading-relaxed">
           <p>
-            A powerful Odoo module designed to help businesses reduce inventory risk and improve cashflow. By providing advanced inventory analytics, forecasting tools, and automated risk assessments, iRM empowers your organization to make data-driven decisions and optimize stock levels across your supply chain.
+            A powerful Strategic Inventory Risk Management module built to enhance Odoo Inventory, iRM helps Trading businesses minimise the risks associated with inventory investment by aligning stock holdings with sales, marketing, financial, and operational objectives.
           </p>
+          <p>
+            Leveraging advanced analytics, a proven methodology, and automated risk assessments, iRM enables organisations to make data-driven decisions that optimise stock levels and strengthen overall supply chain performance.
+          </p>
+          <ul className="list-disc space-y-3 pl-6">
+            <li>iRM is a Strategic Inventory module that extends and enhances Odoo&rsquo;s Inventory functionality.</li>
+            <li>Designed for Trading businesses, including importers, wholesalers, distributors, and retailers of finished goods, components, parts, and accessories.</li>
+            <li>Aligns inventory investment with demand patterns and broader business objectives.</li>
+            <li>Enables businesses to achieve targeted DIFOT service levels by ensuring optimal product availability, while identifying and isolating excess, slow-moving, and obsolete stock&mdash;typically reducing such inventory by double-digit percentages of total inventory value.</li>
+            <li>Eliminates manual decision-making by automating product stocking strategies based on market demand and predefined parameters.</li>
+            <li>Fully data-driven, enabling automated calculation of optimal stock levels across the entire product portfolio, including Safety Stock, Minimum and Maximum levels, and Reorder Quantities&mdash;based on iRM defaults or user-defined DIFOT targets.</li>
+            <li>Supports end-to-end Product Lifecycle Management, including new product launches, end-of-life processes, and strategic product withdrawals.</li>
+            <li>Enables automated management of strategic stock holdings for key customers, seasonal demand, critical production materials, and repair and service parts.</li>
+            <li>Provides a detailed, downloadable Inventory Risk Assessment report with up to 12 months of sales data, delivering clear visibility of total, active, and non-moving inventory, supporting informed financial decisions and improving cash flow, profitability, and operational efficiency.</li>
+          </ul>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
