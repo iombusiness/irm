@@ -12,7 +12,7 @@ const AboutSection = () => {
             iRM
           </p>
           <h2 className="mt-4 text-3xl font-bold text-white">
-            Inventory Risk Mitigation
+            Inventory Risk Mitigation Odoo Software
           </h2>
           <div className="mt-4 h-1 w-16 rounded-full bg-primary mx-auto" />
         </div>

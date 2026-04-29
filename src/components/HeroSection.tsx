@@ -13,7 +13,7 @@ const HeroSection = () => {
           iRM
         </h1>
         <p className="text-lg md:text-xl text-primary-foreground/80 font-light leading-relaxed">
-          Inventory Risk Mitigation Odoo Software
+          Inventory Risk Mitigation
         </p>
         <p className="text-base md:text-lg text-primary-foreground/70 max-w-xl mx-auto">
           An Odoo module to reduce inventory risk and improve cashflow for your business
